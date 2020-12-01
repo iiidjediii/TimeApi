@@ -14,12 +14,19 @@ class HelloView(APIView):
             content = {'error': 'only get requests are supported'}
 
         else:
-            content = {
-                'TOKEN': settings.MYAPI_CORE_AUTH_TOKEN,
-                'HTTP_HEADER': request.GET,
-                'content_type': request.content_type,
-                'content_params': request.content_params,
-                'headers': request.headers,
-            }
+            if settings.MYAPI_CORE_AUTH_TOKEN == request.headers['token']:
+                content = {
+                    'OK': 'True'
+                    # 'TOKEN': settings.MYAPI_CORE_AUTH_TOKEN,
+                    # 'HTTP_HEADER': request.GET,
+                    # 'content_type': request.content_type,
+                    # 'content_params': request.content_params,
+                    # 'headers': request.headers,
+
+                }
+            else:
+                content = {
+                    'OK': 'False'
+                }
 
         return Response(content)

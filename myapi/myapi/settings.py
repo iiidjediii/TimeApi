@@ -15,6 +15,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#my variable
+import os
+
+MYAPI_CORE_AUTH_TOKEN = os.environ.get('MYAPI_CORE_AUTH_TOKEN', 'DEBUG')
+print(MYAPI_CORE_AUTH_TOKEN)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/

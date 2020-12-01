@@ -1,11 +1,25 @@
+import django
+from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 
+
 class HelloView(APIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        content = {'message': 'Hello!!!!'}
+        if request.method != 'GET':
+            content = {'error': 'only get requests are supported'}
+
+        else:
+            content = {
+                'TOKEN': settings.MYAPI_CORE_AUTH_TOKEN,
+                'HTTP_HEADER': request.GET,
+                'content_type': request.content_type,
+                'content_params': request.content_params,
+                'headers': request.headers,
+            }
+
         return Response(content)

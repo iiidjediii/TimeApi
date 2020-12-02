@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+
+from .views import TimeCheckView
 
 urlpatterns = [
-    path('hello/', views.HelloView.as_view(), name='hello'),
+    path('', TimeCheckView.as_view()),
 ]

@@ -1,12 +1,11 @@
-
+# cache
 __pycache__
 *.py[co]
 
-.sqlite3
+# database
+*.sqlite3
 
-
-*.iml
-
+# IDE
+.vscode
+.venv
 .idea
-
-.idea/

@@ -1,7 +1,7 @@
 import time
 import datetime
-import requests
-from django.conf import settings
+import base64
+
 
 def timing(get_response):
     def middleware(request):
@@ -17,8 +17,7 @@ def timing(get_response):
 
 # def token_check(get_response):
 #     def middleware(request):
-#         if settings.MYAPI_CORE_AUTH_TOKEN == request.headers.get('Authorization'):
-#             token = True
+#
 #
 #         response = get_response(request)
 #

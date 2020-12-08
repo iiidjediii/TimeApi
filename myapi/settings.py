@@ -45,7 +45,9 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": []
 }
 
-MYAPI_CORE_AUTH_TOKEN = 'Basic %s' % os.environ.get('MYAPI_CORE_AUTH_TOKEN', 'DEBUG')
+# MYAPI_CORE_AUTH_TOKEN = os.environ.get('MYAPI_CORE_AUTH_TOKEN', 'DEBUG')
+# print(MYAPI_CORE_AUTH_TOKEN)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.timing',
+    # 'core.middleware.token_check',
+
 
 ]
 

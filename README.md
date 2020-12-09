@@ -26,3 +26,7 @@ python manage.py runserver
 ```shell script
 curl -H "Authorization: token" http://127.0.0.1:8000
 ```
+##### Пример запроса
+```shell script
+curl -H "Authorization:ZGF5OmRheQ==" http://127.0.0.1:8000/time?value=1607514830
+```

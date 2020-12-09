@@ -1,7 +1,7 @@
 import requests
 
 TIME_URL = 'http://worldtimeapi.org/api/timezone/Europe/Moscow'
-DIFFERENCE = 30
+DIFFERENCE = 300
 
 
 def check_time(value):
@@ -14,11 +14,9 @@ def check_time(value):
     if response.status_code == 200:
         time = response.json().get('unixtime')
         valid = abs(int(time) - int(value)) < DIFFERENCE
-        print('valeu', value)
+        print('value_utils', value)
+        print('utils(apitime)', time)
         return bool(valid)
 
 
 
-response = requests.get(TIME_URL)
-time = response.json().get('unixtime')
-print(time)

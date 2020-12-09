@@ -8,10 +8,17 @@ def check_time(value):
     try:
         value = int(value)
     except:
-        return TypeError
+        return False
 
     response = requests.get(TIME_URL)
     if response.status_code == 200:
         time = response.json().get('unixtime')
-        valid = abs(time - value) < DIFFERENCE
+        valid = abs(int(time) - int(value)) < DIFFERENCE
+        print('valeu', value)
         return bool(valid)
+
+
+
+response = requests.get(TIME_URL)
+time = response.json().get('unixtime')
+print(time)

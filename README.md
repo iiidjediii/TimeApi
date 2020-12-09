@@ -13,7 +13,6 @@ pip install -r requirements.txt
 #### Запуск
 
 ```shell script
-export MYAPI_CORE_AUTH_TOKEN=token
 
 python manage.py migrate
 
@@ -25,5 +24,5 @@ python manage.py runserver
 #### Проверка работоспособности
 
 ```shell script
-curl -H "Authorization: Basic value" http://127.0.0.1:8000
+curl -H "Authorization: token" http://127.0.0.1:8000
 ```

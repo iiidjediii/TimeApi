@@ -1,16 +1,20 @@
+from rest_framework.exceptions import AuthenticationFailed
+from .models import User
+import base64
 
-#
-# def is_authenticated(token):
-#     if not token:
-#         return False
-#
-#     result = False
-#     try:
-#         base64_bytes = token.encode('ascii')
-#         message_bytes = base64.b64decode(base64_bytes)
-#         username, password = message_bytes.decode('ascii').split(':')
-#
-#         if User.objects.filter(user_name=username, password=password):
-#             result = True
-#     finally:
-#         return result
+
+def CheckToken(request):
+    if request.headers.get('Authorization') == None:
+        raise AuthenticationFailed('Incorrect authentication credentials. Token is not in the header')
+    try:
+        encoded_userpass = request.headers.get('Authorization')
+        base64_bytes = encoded_userpass.encode('ascii')
+        message_bytes = base64.b64decode(base64_bytes)
+        username, password = message_bytes.decode('ascii').split(':')
+    except:
+        raise AuthenticationFailed('Incorrect authentication credentials. Token is not decoded')
+    if User.objects.filter(user_name=username).filter(password=password):
+        return (username, password)
+    else:
+        raise AuthenticationFailed('Incorrect authentication credentials. Invalid token')
+

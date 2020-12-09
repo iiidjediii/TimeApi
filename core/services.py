@@ -4,7 +4,7 @@ import base64
 
 
 def CheckToken(request):
-    if request.headers.get('Authorization') == None:
+    if request.headers.get('Authorization') is None:
         raise AuthenticationFailed('Incorrect authentication credentials. Token is not in the header')
     try:
         encoded_userpass = request.headers.get('Authorization')

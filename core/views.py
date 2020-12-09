@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .utils import check_time
 from .services import CheckToken
-from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import ValidationError
 
 
 class TimeCheckView(APIView):
@@ -11,7 +11,7 @@ class TimeCheckView(APIView):
         time = request.query_params.get('value')
         print('value_views', time)
         if time is None:
-            raise AuthenticationFailed('parameter time not passed')
+            raise ValidationError('parameter time not passed')
         result = check_time(time)
         response = {
             'time': bool(result),

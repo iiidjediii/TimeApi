@@ -1,7 +1,8 @@
 import requests
+from rest_framework.exceptions import APIException
 
 TIME_URL = 'http://worldtimeapi.org/api/timezone/Europe/Moscow'
-DIFFERENCE = 300
+DIFFERENCE = 50
 
 
 def check_time(value):
@@ -9,14 +10,15 @@ def check_time(value):
         value = int(value)
     except:
         return False
-
-    response = requests.get(TIME_URL)
+    try:
+        response = requests.get(TIME_URL)
+    except:
+        raise APIException('without connection internet')
     if response.status_code == 200:
         time = response.json().get('unixtime')
         valid = abs(int(time) - int(value)) < DIFFERENCE
         print('value_utils', value)
         print('utils(apitime)', time)
         return bool(valid)
-
 
 

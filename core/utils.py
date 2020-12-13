@@ -16,7 +16,8 @@ def check_time(value):
     try:
         response = requests.get(TIME_URL)
     except:
-        raise APIException('without connection internet')
+        # raise APIException('without connection internet')
+        return False
 
     if response.status_code == 200:
         time = response.json().get('unixtime')

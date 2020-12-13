@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.exceptions import ValidationError
 
 from .utils import check_time
-
+import json
 
 class TimeCheckView(APIView):
     def get(self, request):
@@ -18,7 +18,12 @@ class TimeCheckView(APIView):
         return Response(response)
 
     def post(self, request):
-        time = request.POST.get("value")
+        try:
+            body = json.loads(request.body)
+            time = body.get('value')
+        except:
+            raise ValidationError('JSONDecodeError')
+        # time = request.POST.get("value")
         if time is None:
             raise ValidationError('parameter time not passed')
         result = check_time(time)

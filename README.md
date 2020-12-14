@@ -24,7 +24,7 @@ python manage.py runserver
 #### Проверка работоспособности
 
 ```shell script
-curl -H "Authorization: token" http://127.0.0.1:8000
+curl -H "Authorization: token" http://127.0.0.1:8000/time
 ```
 ##### Пример запроса
 ```shell script

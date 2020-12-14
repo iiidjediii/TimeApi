@@ -1,4 +1,4 @@
-from django.http import HttpResponseForbidden, HttpResponse
+from django.http import HttpResponseForbidden, JsonResponse
 
 from .services import is_token_valid
 
@@ -6,8 +6,8 @@ from .services import is_token_valid
 def token_check(get_response):
     def middleware(request):
         if not is_token_valid(request.headers.get('Authorization')):
-            return HttpResponseForbidden("Authorization error!")
-
+            # return HttpResponseForbidden("Authorization error!")
+            return JsonResponse({"detail": "Authorization error!"})
         response = get_response(request)
 
         return response
@@ -29,6 +29,6 @@ class CustomExcMiddleware:
     def process_exception(self, request, exception):
         try:
             if isinstance(exception, Exception):
-                return HttpResponse(exception.__module__, status=500)
+                return JsonResponse({"Error": exception.__module__}, status=500)
         except:
-            return HttpResponse('something unexpected')
+            return JsonResponse({"detail":"something unexpected"})

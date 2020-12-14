@@ -3,7 +3,7 @@ from rest_framework.exceptions import APIException
 import requests
 
 TIME_URL = 'http://worldtimeapi.org/api/timezone/Europe/Moscow'
-DIFFERENCE = 50
+DIFFERENCE = 400
 
 
 def check_time(value):
@@ -16,7 +16,6 @@ def check_time(value):
     try:
         response = requests.get(TIME_URL)
     except:
-        # raise APIException('without connection internet')
         return False
 
     if response.status_code == 200:

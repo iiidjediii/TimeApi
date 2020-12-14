@@ -7,6 +7,7 @@ def token_check(get_response):
     def middleware(request):
         if not is_token_valid(request.headers.get('Authorization')):
             return JsonResponse({"detail": "Authorization error!"}, status=400)
+
         response = get_response(request)
         return response
     return middleware

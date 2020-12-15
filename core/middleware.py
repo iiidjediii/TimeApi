@@ -25,5 +25,16 @@ class CustomExcMiddleware:
         return response
 
     def process_exception(self, request, exception):
-        if isinstance(exception, Exception):
-            return JsonResponse({"Error": exception.__module__}, status=500)
+        try:
+            if request.status != 404:
+                return request
+            message = request.message
+        except:
+            if exception.status != 404:
+                raise
+            message = exception.reason
+        return JsonResponse({"Error": message}, status=503,)
+
+
+        # if isinstance(exception, Exception):
+        #     return JsonResponse({"Error": exception.__module__}, status=500)

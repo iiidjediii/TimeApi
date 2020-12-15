@@ -20,6 +20,11 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+#### Проверка времени
+Время передается в формате Unix в body post-запроса в формате JSON. 
+
+#### Авторизация
+В заголовке запроса должен передаваться токен авторизации (base64 encode "username"+"password")
 
 #### Проверка работоспособности
 

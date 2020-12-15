@@ -1,11 +1,11 @@
 import base64
+from rest_framework.exceptions import ValidationError
 
 from .models import User
 
 
 def user_exist(username, password):
     return User.objects.filter(user_name=username, password=password).exists()
-    # return User.objects.get(user_name=username, password=password)
 
 
 def is_token_valid(token):
@@ -20,8 +20,7 @@ def is_token_valid(token):
 
         if user_exist(username, password):
             result = True
-    except BaseException as exc:
-        print(exc)
+    except:
+        raise ValidationError
 
     return result
-

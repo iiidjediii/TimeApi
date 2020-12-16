@@ -18,10 +18,7 @@ def exception_check_middleware(get_response):
         return get_response(request)
 
     def process_exception(request, exception):
-        message = {
-            'detail': "Server Error",
-        }
-        return JsonResponse(message, status=500,)
+        return JsonResponse({"detail": "Internal server error"}, status=500)
 
     middleware.process_exception = process_exception
 

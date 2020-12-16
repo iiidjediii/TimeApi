@@ -22,5 +22,5 @@ def is_token_valid(token):
             result = True
     except:
         return False
-
-    return result
+    finally:
+        return result

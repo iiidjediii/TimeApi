@@ -25,7 +25,7 @@ python manage.py runserver
 В теле запроса передается время в формате Unix
 ```example
 {
-    "value"=1608100094
+    "value":1608100094
 }
 ```
 

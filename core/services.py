@@ -21,6 +21,6 @@ def is_token_valid(token):
         if user_exist(username, password):
             result = True
     except:
-        raise ValidationError
+        return False
 
     return result

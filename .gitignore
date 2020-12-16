@@ -8,7 +8,9 @@ __pycache__
 # IDE
 .vscode
 .venv
+venv
 .idea
 
 # test
 test.py
+

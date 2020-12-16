@@ -8,7 +8,6 @@ import json
 
 class TimeCheckView(APIView):
     def post(self, request):
-        drotch()
         try:
             body = json.loads(request.body)
             time = body.get("value")

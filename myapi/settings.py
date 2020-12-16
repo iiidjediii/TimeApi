@@ -57,8 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.middleware.token_check',
-    'core.middleware.CustomExcMiddleware',
+    'core.middleware.exception_check_middleware',
+    'core.middleware.token_check_middleware',
+
 
 
 ]

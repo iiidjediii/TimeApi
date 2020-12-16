@@ -7,25 +7,14 @@ import json
 
 
 class TimeCheckView(APIView):
-    def get(self, request):
-        time = request.query_params.get('value')
-        if time is None:
-            raise ValidationError('parameter time not passed')
-        result = check_time(time)
-        response = {
-            'time': bool(result),
-        }
-
-        return Response(response)
-
     def post(self, request):
         try:
             body = json.loads(request.body)
             time = body.get("value")
         except:
-            raise ValidationError('JSONDecodeError')
+            raise ValidationError({"detail": 'JSONDecodeError'})
         if time is None:
-            raise ValidationError('parameter time not passed')
+            raise ValidationError({"detail": 'parameter time not passed'})
         result = check_time(time)
         response = {
             'time': bool(result)

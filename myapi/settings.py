@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'core.middleware.exception_check_middleware',
-    'core.middleware.token_check_middleware',
+#    'core.middleware.token_check_middleware',
 
 
 

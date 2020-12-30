@@ -2,7 +2,7 @@
 
 #### Описание
 
-Использвался django-rest-framework для создания rest-api, SQLite в качестве БД
+Использвался django-rest-framework для создания rest-api
 
 #### Установка
 
@@ -35,9 +35,22 @@ python manage.py runserver
 #### Проверка работоспособности
 
 ```shell script
-curl -H "Authorization: token" http://127.0.0.1:8000/time
+curl --location --request POST 'http://127.0.0.1:8000/time' \
+--header 'Authorization: ZGF5OmRheQ==' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "value":1608116916
+}'
 ```
-##### Пример запроса
+##### Для проверки работоспособности использовался Postman с вышеуказанными параметрами запроса.
+###### Изначально предполагается создание суперпользователя:
+
 ```shell script
-curl -H "Authorization:ZGF5OmRheQ==" http://127.0.0.1:8000/time?value=1607514830
+python manage.py createsuperuser
 ```
+###### Создание пользователей через панель администратора:
+
+```shell script
+http://127.0.0.1:8000/admin
+```
+После этого раскомментировать строку 'core.middleware.token_check_middleware' в settings (middleware), после чего каждый запрос будет проверяться на токен авторизации.
